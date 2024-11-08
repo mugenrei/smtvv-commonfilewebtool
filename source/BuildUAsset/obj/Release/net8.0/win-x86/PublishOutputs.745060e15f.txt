@@ -1,0 +1,3 @@
+D:\Projects\Code\JS\charaname\source\BuildUAsset\bin\Release\net8.0\publish\win-x86\UAssetHandler.pdb
+D:\Projects\Code\JS\charaname\source\BuildUAsset\bin\Release\net8.0\publish\win-x86\UAssetAPI.pdb
+D:\Projects\Code\JS\charaname\source\BuildUAsset\bin\Release\net8.0\publish\win-x86\UAssetHandler.exe

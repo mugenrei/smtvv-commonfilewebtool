@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CharacterName Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+</head>
+<body>
+    <!-- Title bar at the top -->
+    <header id="title-bar">
+        <h1>CharacterName Builder</h1>
+    </header>
+
+    <!-- Main container with sidebars and main content -->
+    <div id="content-container">
+        <!-- Left sidebar for custom preset upload -->
+        <aside id="left-sidebar">
+            <h3>Your Own Preset</h3>
+            <input type="file" id="presetInput " accept=".json" onchange="loadPreset(event)" hidden>
+            <button id="loadPresetButton" onclick="document.getElementById('presetInput').click()">Load Preset File</button>
+            <h3>mugenrei Mods Presets</h3>
+            <div id="preset-list"></div>
+        </aside>
+
+        <!-- Main content area in the center -->
+        <main id="main-content">
+            <input type="file" id="fileInput" accept=".json">
+            <button id="savePackageButton" onclick="savePackage()">Save Package</button> <!-- Add id to the button -->
+            <button id="saveButton" onclick="saveChanges()" disabled>Save CharacterName.json</button>
+            <button id="savePresetButton" onclick="savePreset()">Save Current Preset</button>
+            
+            <div id="editor"></div>
+        </main>
+
+        <!-- Right sidebar for built-in presets -->
+        <aside id="right-sidebar">
+            <!-- Instructions for using the right sidebar -->
+            <p><h3>Quick guide</h3></p></br>
+            
+            <ol>
+                <li>Load CharacterName.json (<a href="">Get one here</a>).</li>
+                <li>Select presets for existing mods, you can select multiple (Same names will be overwritten by the latest loaded preset).</li>
+                <li>Optionally, you can load external presets.</li>
+                <li>Optionally, edit names manually.</li>
+                <li>Save the preset for possible future additions</li>
+                <li>Save the package and extract it.</li>
+                <li>Execute build-mod.bat to build the patch mod.</li>
+                <li>Move it to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506">How to install mods</a>).</li>
+            </ol>
+
+        </aside>
+    </div>
+
+    <!-- Footer at the bottom -->
+    <footer id="footer">
+        <p>&copy; 2024 mugenrei. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* Reset and basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    
+}
+
+body, html {
+    height: 100%;
+    background-color: #464646;
+    color: #ffffff;
+}
+
+#title-bar {
+    background-color: #333;
+    padding: 15px;
+    text-align: center;
+}
+
+#content-container {
+    display: flex;
+    min-height: calc(100vh - 120px); /* Account for header and footer */
+}
+
+#left-sidebar, #right-sidebar {
+    width: 200px;
+    padding: 20px;
+    background-color: #333;
+    border-right: 5px solid #000000;
+    overflow-y: auto;
+}
+
+#right-sidebar {
+    border-left: 5px solid #000000;
+}
+
+#main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+#editor {
+    margin-top: 20px;
+}
+
+button {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background-color: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #000000;
+}
+
+button:disabled {
+    background-color: #636363;
+    cursor: not-allowed;
+}
+
+button:hover {
+    background-color: #d0d0d0;
+}
+
+#footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive layout */
+@media (max-width: 800px) {
+    #content-container {
+        flex-direction: column;
+    }
+    
+    #left-sidebar, #right-sidebar {
+        width: 100%;
+        border: none;
+    }
+}
+
+.preset-item {
+    cursor: pointer;
+    padding: 8px;
+    margin: 4px 0;
+    background-color: #e0e0e0;
+    color: #000000;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.preset-item:hover {
+    background-color: #d0d0d0;
+}
+
+.editor-entry {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 3px solid #000000;
+}
+
+.editor-label {
+    flex: 1;
+    font-weight: bold;
+    padding-right: 8px;
+    white-space: nowrap;
+    color: #e0e0e0;
+}
+
+.editor-input {
+    flex: 1;
+    padding: 4px;
+    border: 1px solid #000000;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+}
+
+a {
+    color: #b33030;
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "TGN6zGyhsoM=",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Code\\JS\\charaname\\source\\BuildUAsset\\UAssetHandler.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\flipe\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.6\\microsoft.net.illink.tasks.8.0.6.nupkg.sha512",
+    "C:\\Users\\flipe\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

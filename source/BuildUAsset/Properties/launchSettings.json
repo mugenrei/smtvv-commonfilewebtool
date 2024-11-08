@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BuildUAsset": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Projects\\Code\\JS\\charaname\\source\\BuildUAsset\\bin\\Debug\\net8.0\\CharacterName.json\""
+    }
+  }
+}
