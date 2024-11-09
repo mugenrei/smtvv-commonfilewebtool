@@ -99,7 +99,7 @@ function savePreset() {
 
 // Load built-in presets from assets/presets
 function loadBuiltInPresets() {
-    fetch("./assets/presets/")
+    fetch("assets/presets/")
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
@@ -200,16 +200,16 @@ async function savePackage() {
 
     // Adding existing files UnrealPak.exe and build-mod.bat from assets/package
     try {
-        const unrealPak = await fetch("./assets/package/bin/UnrealPak", { method: "GET", headers: { "Content-Type": "application/octet-stream" } })
+        const unrealPak = await fetch("assets/package/bin/UnrealPak", { method: "GET", headers: { "Content-Type": "application/octet-stream" } })
             .then(res => res.blob());
 
         zip.file("assets/package/bin/UnrealPak.exe", unrealPak);
 
-        const uAssetHandler = await fetch("./assets/package/bin/UAssetHandler", { method: "GET", headers: { "Content-Type": "application/octet-stream" } })
+        const uAssetHandler = await fetch("assets/package/bin/UAssetHandler", { method: "GET", headers: { "Content-Type": "application/octet-stream" } })
             .then(res => res.blob());
         zip.file("assets/package/bin/UAssetHandler.exe", uAssetHandler);
 
-        const buildMod = await fetch("./assets/package/build-mod.bat").then(res => res.blob());
+        const buildMod = await fetch("assets/package/build-mod.bat").then(res => res.blob());
         zip.file("assets/package/build-mod.bat", buildMod);
     } catch (error) {
         console.error("Failed to add existing files to package:", error);
