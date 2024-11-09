@@ -3,9 +3,11 @@ const fileInput = document.getElementById("fileInput");
 const saveButton = document.getElementById("saveButton");
 const presetList = document.getElementById("preset-list");
 const savePackageButton = document.getElementById("savePackageButton");
+const savePackageButtonR2 = document.getElementById("savePackageR2Button");
 const savePresetButton = document.getElementById("savePresetButton");
 const loadPresetButton = document.getElementById("loadPresetButton");
 savePackageButton.disabled = true; // Disable button at the start
+savePackageButtonR2.disabled = true; // Disable button at the start
 savePresetButton.disabled = true; // Disable button at the start
 saveButton.disabled = true; // Disable button at the start
 loadPresetButton.disabled = true; // Disable button at the start
@@ -233,5 +235,55 @@ async function savePackage() {
         // Re-enable button when function completes
         savePackageButton.disabled = false;
         savePackageButton.style.opacity = 1;
+    });
+}
+
+async function savePackageR2() {
+    const savePackageButtonR2 = document.getElementById("savePackageR2Button");
+    savePackageButtonR2.disabled = true; // Disable button at the start
+    savePackageButtonR2.style.opacity = 0.5; // Gray out button
+
+    const zip = new JSZip();
+
+    // Adding existing files UnrealPak.exe and build-mod.bat from assets/package
+    try {
+        const uAssetHandler = await fetch("assets/package/bin/UAssetHandler", { method: "GET", headers: { "Content-Type": "application/octet-stream" } })
+            .then(res => res.blob());
+        zip.file("assets/package/bin/UAssetHandler.exe", uAssetHandler);
+
+        const buildMod = await fetch("assets/package/build-mod-r2.bat").then(res => res.blob());
+        zip.file("assets/package/build-mod-r2.bat", buildMod);
+        
+        const json1 = await fetch("assets/package/Sewer56.Update.Metadata.json").then(res => res.blob());
+        zip.file("assets/package/Sewer56.Update.Metadata.json", json1);
+
+        const json2 = await fetch("assets/package/ModConfig.json").then(res => res.blob());
+        zip.file("assets/package/ModConfig.json", json2);
+    } catch (error) {
+        console.error("Failed to add existing files to package:", error);
+        alert("Failed to add existing files to the package. Please try again.");
+        savePackageButtonR2.disabled = false;
+        savePackageButtonR2.style.opacity = 1;
+        return;
+    }
+
+    // Adding the current CharacterName.json file from jsonData
+    const characterDataBlob = new Blob([JSON.stringify(jsonData, null, 2)], { type: "application/json" });
+    zip.file("assets/package/CharacterName.json", characterDataBlob);
+
+    // Generate the zip file and trigger the download
+    zip.generateAsync({ type: "blob" }).then((content) => {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(content);
+        link.download = "CharacterNamePackageR2.zip";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }).catch(err => {
+        console.error("Failed to generate zip file:", err);
+        alert("Failed to generate package. Please try again.");
+    }).finally(() => {
+        // Re-enable button when function completes
+        savePackageButtonR2.disabled = false;
+        savePackageButtonR2.style.opacity = 1;
     });
 }

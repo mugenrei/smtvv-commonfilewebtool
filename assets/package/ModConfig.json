@@ -1,0 +1,28 @@
+{
+  "ModId": "com.mugenrei.commonfilespatch",
+  "ModName": "Common Files Patch",
+  "ModAuthor": "mugenrei",
+  "ModVersion": "0.6.9",
+  "ModDescription": "Patch with custom built common files.",
+  "ModDll": "",
+  "ModIcon": "",
+  "ModR2RManagedDll32": "",
+  "ModR2RManagedDll64": "",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
+  "IsLibrary": false,
+  "ReleaseMetadataFileName": "com.mugenrei.commonfilespatch.ReleaseMetadata.json",
+  "PluginData": {},
+  "IsUniversalMod": false,
+  "ModDependencies": [
+    "UnrealEssentials"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "smt5v-win64-shipping.exe"
+  ],
+  "ProjectUrl": "http://mugenrei.com"
+}

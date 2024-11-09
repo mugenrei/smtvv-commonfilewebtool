@@ -1,0 +1,1 @@
+{"ExtraData":null,"Type":0,"Version":"0.6.9","Hashes":{"Files":[{"RelativePath":"ModConfig.json","Hash":821335729541011711}]},"IgnoreRegexes":[".*\\.json","com\\.mugenrei\\.commonfilespatch\\.nuspec","com\\.mugenrei\\.commonfilespatch\\.ReleaseMetadata\\.json"],"IncludeRegexes":["ModConfig\\.json","\\.deps\\.json","\\.runtimeconfig\\.json"],"DeltaData":null}

@@ -20,14 +20,15 @@
             <h3>Your Own Preset</h3>
             <input type="file" id="presetInput" accept=".json" onchange="loadPreset(event)" hidden>
             <button id="loadPresetButton" onclick="document.getElementById('presetInput').click()">Load Preset File</button>
-            <h3>mugenrei Mods Presets</h3>
+            <h3>Mods Presets</h3>
             <div id="preset-list"></div>
         </aside>
 
         <!-- Main content area in the center -->
         <main id="main-content">
             <input type="file" id="fileInput" accept=".json">
-            <button id="savePackageButton" onclick="savePackage()">Save Package</button> <!-- Add id to the button -->
+            <button id="savePackageButton" onclick="savePackage()">Save Package (PAK)</button> <!-- Add id to the button -->
+            <button id="savePackageR2Button" onclick="savePackageR2()">Save Package (Reloaded II)</button> <!-- Add id to the button -->
             <button id="saveButton" onclick="saveChanges()" disabled>Save CharacterName.json</button>
             <button id="savePresetButton" onclick="savePreset()">Save Current Preset</button>
             
@@ -46,8 +47,9 @@
                 <li>Optionally, edit names manually.</li>
                 <li>Save the preset for possible future additions</li>
                 <li>Save the package and extract it.</li>
-                <li>Execute build-mod.bat to build the patch mod.</li>
-                <li>Move it to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506">How to install mods</a>).</li>
+                <li>Execute build-mod.bat or build-mod-r2.bat to build the patch mod.</li>
+                <li>(PAK) Move the generated PAK to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506">How to install mods</a>).</li>
+                <li>(RII) Drag and drop the generated zip to the Reloaded II interface.</li>
             </ol>
 
         </aside>

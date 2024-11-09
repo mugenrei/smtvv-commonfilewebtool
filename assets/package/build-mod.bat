@@ -21,5 +21,6 @@ REM Create the filelist.txt for UnrealPak
 REM Run UnrealPak with the file list
 "%AssetDir%\UnrealPak.exe" "%~dp0ZZZ_CharacterName_P.pak" -create=filelist.txt -compress
 
-echo Done!
+echo Done! Now put the mod to the ~mods folder to install it.
+pause
 endlocal
