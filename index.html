@@ -9,9 +9,17 @@
 </head>
 <body>
     <!-- Title bar at the top -->
-    <header id="title-bar">
-        <h1>CharacterName Builder</h1>
-    </header>
+    <div id="title-bar">
+        <div id="left-column">
+            <h3><a href="http://mugenrei.com">mugenrei.com Home</a></h3>
+        </div>
+        <div id="center-column">
+            <h1>Character Editor</h1>
+        </div>
+        <div id="right-column">
+            <span><a href="https://github.com/mugenrei/smtvv-commonfilewebtool">GitHub of the page</a></span>
+        </div>
+    </div>
 
     <!-- Main container with sidebars and main content -->
     <div id="content-container">
@@ -41,14 +49,14 @@
             <p><h3>Quick guide</h3></p></br>
             
             <ol>
-                <li>Load CharacterName.json (<a href="https://github.com/mugenrei/smtvv-commonfilewebtool/tree/main/assets/cleanfiles">Get one here</a>).</li>
+                <li>Load CharacterName.json (<a href="https://github.com/mugenrei/smtvv-commonfilewebtool/tree/main/assets/cleanfiles" target="_blank">Get one here</a>).</li>
                 <li>Select presets for existing mods, you can select multiple (Same names will be overwritten by the latest loaded preset).</li>
                 <li>Optionally, you can load external presets.</li>
                 <li>Optionally, edit names manually.</li>
                 <li>Save the preset for possible future additions</li>
                 <li>Save the PAK or Reloaded II package, one OR another, and extract it.</li>
                 <li>Execute build-mod.bat or build-mod-r2.bat to build the patch mod.</li>
-                <li>(PAK) Move the generated PAK to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506">How to install mods</a>).</li>
+                <li>(PAK) Move the generated PAK to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506" target="_blank">How to install mods</a>).</li>
                 <li>(RII) Drag and drop the generated zip to the Reloaded II interface then put it on last in the list.</li>
             </ol>
 

@@ -14,9 +14,35 @@ body, html {
 }
 
 #title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     background-color: #333;
-    padding: 15px;
+    color: white;
+}
+
+#left-column, #center-column, #right-column {
+    flex: 1;
     text-align: center;
+}
+
+#left-column {
+    text-align: left;
+}
+
+#right-column {
+    text-align: right;
+}
+
+#center-column h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#title-bar span {
+    font-size: 16px;
+    color: #f1f1f1;
 }
 
 #content-container {
