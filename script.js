@@ -191,7 +191,6 @@ function downloadFile(filename, content) {
 
 // Function to save package as a zip file
 async function savePackage() {
-    const savePackageButton = document.getElementById("savePackageButton");
     savePackageButton.disabled = true; // Disable button at the start
     savePackageButton.style.opacity = 0.5; // Gray out button
 
@@ -240,7 +239,6 @@ async function savePackage() {
 }
 
 async function savePackageR2() {
-    const savePackageButtonR2 = document.getElementById("savePackageR2Button");
     savePackageButtonR2.disabled = true; // Disable button at the start
     savePackageButtonR2.style.opacity = 0.5; // Gray out button
 
