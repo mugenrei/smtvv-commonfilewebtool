@@ -99,19 +99,15 @@ function savePreset() {
 
 // Load built-in presets from assets/presets
 function loadBuiltInPresets() {
-    fetch("assets/presets/")
-        .then(response => response.text())
-        .then(html => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const files = Array.from(doc.querySelectorAll("a")).map(a => a.getAttribute("href")).filter(name => name.endsWith(".json"));
-
+    fetch("assets/presets/preset-manifest.json")
+        .then(response => response.json())
+        .then(files => {
             files.forEach(file => {
                 const presetName = file.replace(/(\.json|\/assets\/presets\/)/gi, "").replaceAll("_", " ");
                 const presetItem = document.createElement("div");
                 presetItem.className = "preset-item";
                 presetItem.innerText = presetName;
-                console.log(presetName)
+                console.log(presetName);
                 presetItem.onclick = () => loadBuiltInPreset(file);
                 presetList.appendChild(presetItem);
             });
@@ -121,7 +117,7 @@ function loadBuiltInPresets() {
 
 // Load and apply a built-in preset
 function loadBuiltInPreset(filename) {
-    fetch(filename)
+    fetch(`assets/presets/${filename}`)
         .then(response => response.json())
         .then(presetData => applyPreset(presetData))
         .catch(err => console.error("Failed to load preset:", err));
