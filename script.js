@@ -36,6 +36,7 @@ function loadFile(event) {
             loadPresetButton.disabled = false;
             savePresetButton.disabled = false;
             savePackageButton.disabled = false;
+            savePackageButtonR2.disabled = false;
         } catch (err) {
             alert("Error parsing JSON file.");
             console.error(err);
