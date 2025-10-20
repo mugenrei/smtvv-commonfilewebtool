@@ -1,8 +1,23 @@
 @echo off
 setlocal
 
-REM Set variables
-set "OutputDir=ZZZ_CharacterName_P\Project\Content\L10N\en\Blueprints\Gamedata\BinTable\Common"
+REM --- Language Selection ---
+echo Please choose a language by typing its code and pressing Enter.
+echo.
+echo Available languages:
+echo   en, de, es, fr, it, ko, pl, pt, ru, tr, zh-Hans, zh-Hant, jp
+echo.
+set /p LANGUAGE="Enter language code: "
+echo.
+
+REM Set OutputDir based on language choice
+if /i "%LANGUAGE%"=="jp" (
+    set "OutputDir=ZZZ_CharacterName_P\Project\Content\Blueprints\Gamedata\BinTable\Common"
+) else (
+    set "OutputDir=ZZZ_CharacterName_P\Project\Content\L10N\%LANGUAGE%\Blueprints\Gamedata\BinTable\Common"
+)
+
+REM Set other variables
 set "AssetDir=.\bin"
 
 REM Run UAssetHandler with the provided JSON file
