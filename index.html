@@ -4,70 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CharacterName Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
 </head>
-<body>
-    <!-- Title bar at the top -->
-    <div id="title-bar">
-        <div id="left-column">
-            <h3><a href="http://mugenrei.com">mugenrei.com Home</a></h3>
+<body class="bg-dark text-light">
+    <!-- Header -->
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3><a href="http://mugenrei.com" class="text-white text-decoration-none">mugenrei.com Home</a></h3>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h1>Character Editor</h1>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="https://github.com/mugenrei/smtvv-commonfilewebtool" class="text-white text-decoration-none">GitHub of the page</a>
+                </div>
+            </div>
         </div>
-        <div id="center-column">
-            <h1>Character Editor</h1>
-        </div>
-        <div id="right-column">
-            <span><a href="https://github.com/mugenrei/smtvv-commonfilewebtool">GitHub of the page</a></span>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Left Sidebar -->
+            <div class="col-lg-3">
+                <aside class="bg-secondary p-3 rounded">
+                    <h3>Your Own Preset</h3>
+                    <input type="file" id="presetInput" accept=".json" onchange="loadPreset(event)" class="d-none">
+                    <button id="loadPresetButton" class="btn btn-primary w-100 mb-3" onclick="document.getElementById('presetInput').click()">
+                        <i class="fas fa-upload"></i> Load Preset File
+                    </button>
+                    <h3>Mods Presets</h3>
+                    <div id="preset-list" class="list-group"></div>
+                </aside>
+            </div>
+
+            <!-- Main Editor -->
+            <div class="col-lg-6">
+                <main class="bg-secondary p-3 rounded">
+                    <input type="file" id="fileInput" accept=".json" class="form-control mb-3">
+                    <div class="btn-group w-100 mb-3">
+                        <button id="savePackageButton" class="btn btn-success" onclick="savePackage()">
+                            <i class="fas fa-save"></i> Save Package (PAK)
+                        </button>
+                        <button id="savePackageR2Button" class="btn btn-success" onclick="savePackageR2()">
+                            <i class="fas fa-save"></i> Save Package (Reloaded II)
+                        </button>
+                    </div>
+                    <div class="btn-group w-100 mb-3">
+                        <button id="saveButton" class="btn btn-info" onclick="saveChanges()" disabled>
+                            <i class="fas fa-edit"></i> Save CharacterName.json
+                        </button>
+                        <button id="savePresetButton" class="btn btn-info" onclick="savePreset()">
+                            <i class="fas fa-download"></i> Save Current Preset
+                        </button>
+                    </div>
+                    <div id="editor"></div>
+                </main>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="col-lg-3">
+                <aside class="bg-secondary p-3 rounded">
+                    <h3>Quick guide</h3>
+                    <ol>
+                        <li>Load CharacterName.json (<a href="https://github.com/mugenrei/smtvv-commonfilewebtool/tree/main/assets/cleanfiles" target="_blank" class="text-white">Get one here</a>).</li>
+                        <li>Select presets for existing mods, you can select multiple (Same names will be overwritten by the latest loaded preset).</li>
+                        <li>Optionally, you can load external presets.</li>
+                        <li>Optionally, edit names manually.</li>
+                        <li>Save the preset for possible future additions</li>
+                        <li>Save the PAK or Reloaded II package, one OR another, and extract it.</li>
+                        <li>Execute build-mod.bat or build-mod-r2.bat to build the patch mod.</li>
+                        <li>(PAK) Move the generated PAK to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506" target="_blank" class="text-white">How to install mods</a>).</li>
+                        <li>(RII) Drag and drop the generated zip to the Reloaded II interface then put it on last in the list.</li>
+                    </ol>
+                </aside>
+            </div>
         </div>
     </div>
 
-    <!-- Main container with sidebars and main content -->
-    <div id="content-container">
-        <!-- Left sidebar for custom preset upload -->
-        <aside id="left-sidebar">
-            <h3>Your Own Preset</h3>
-            <input type="file" id="presetInput" accept=".json" onchange="loadPreset(event)" hidden>
-            <button id="loadPresetButton" onclick="document.getElementById('presetInput').click()">Load Preset File</button>
-            <h3>Mods Presets</h3>
-            <div id="preset-list"></div>
-        </aside>
-
-        <!-- Main content area in the center -->
-        <main id="main-content">
-            <input type="file" id="fileInput" accept=".json">
-            <button id="savePackageButton" onclick="savePackage()">Save Package (PAK)</button> <!-- Add id to the button -->
-            <button id="savePackageR2Button" onclick="savePackageR2()">Save Package (Reloaded II)</button> <!-- Add id to the button -->
-            <button id="saveButton" onclick="saveChanges()" disabled>Save CharacterName.json</button>
-            <button id="savePresetButton" onclick="savePreset()">Save Current Preset</button>
-            
-            <div id="editor"></div>
-        </main>
-
-        <!-- Right sidebar for built-in presets -->
-        <aside id="right-sidebar">
-            <!-- Instructions for using the right sidebar -->
-            <p><h3>Quick guide</h3></p></br>
-            
-            <ol>
-                <li>Load CharacterName.json (<a href="https://github.com/mugenrei/smtvv-commonfilewebtool/tree/main/assets/cleanfiles" target="_blank">Get one here</a>).</li>
-                <li>Select presets for existing mods, you can select multiple (Same names will be overwritten by the latest loaded preset).</li>
-                <li>Optionally, you can load external presets.</li>
-                <li>Optionally, edit names manually.</li>
-                <li>Save the preset for possible future additions</li>
-                <li>Save the PAK or Reloaded II package, one OR another, and extract it.</li>
-                <li>Execute build-mod.bat or build-mod-r2.bat to build the patch mod.</li>
-                <li>(PAK) Move the generated PAK to the ~mods folder of the game (<a href="https://gamebanana.com/tuts/17506" target="_blank">How to install mods</a>).</li>
-                <li>(RII) Drag and drop the generated zip to the Reloaded II interface then put it on last in the list.</li>
-            </ol>
-
-        </aside>
-    </div>
-
-    <!-- Footer at the bottom -->
-    <footer id="footer">
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
         <p>&copy; 2024 mugenrei. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

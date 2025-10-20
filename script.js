@@ -68,10 +68,10 @@ function parseData(obj, path = "") {
 // Function to create editable fields in the editor
 function createEditorField(path, value) {
     const field = document.createElement("div");
-    field.className = "editor-entry"; // Add the editor-entry class
+    field.className = "editor-entry input-group mb-2";
     field.innerHTML = `
-        <label class="editor-label"><strong>${value.replace(/:.*?$/gi, "")}</strong></label>
-        <input class="editor-input" type="text" value="${value}" onchange="updateEditData('${path}', this.value)">
+        <label class="editor-label input-group-text"><strong>${value.replace(/:.*?$/gi, "")}</strong></label>
+        <input class="editor-input form-control" type="text" value="${value}" onchange="updateEditData('${path}', this.value)">
     `;
     editor.appendChild(field);
 }
@@ -107,11 +107,14 @@ function loadBuiltInPresets() {
         .then(files => {
             files.forEach(file => {
                 const presetName = file.replace(/(\.json|\/assets\/presets\/)/gi, "").replaceAll("_", " ");
-                const presetItem = document.createElement("div");
-                presetItem.className = "preset-item";
+                const presetItem = document.createElement("a");
+                presetItem.href = "#";
+                presetItem.className = "list-group-item list-group-item-action";
                 presetItem.innerText = presetName;
-                console.log(presetName);
-                presetItem.onclick = () => loadBuiltInPreset(file);
+                presetItem.onclick = (e) => {
+                    e.preventDefault();
+                    loadBuiltInPreset(file);
+                };
                 presetList.appendChild(presetItem);
             });
         })
